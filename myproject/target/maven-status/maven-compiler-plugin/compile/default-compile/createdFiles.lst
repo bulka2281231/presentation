@@ -1,8 +1,11 @@
 com/example/Main$1.class
-com/example/ImagesComponent.class
+com/example/Level.class
 com/example/MainFrame.class
 com/example/WindowComponent.class
+com/example/JsonDataHandler.class
+com/example/ImagesComponent.class
 com/example/WindowComponent$1.class
 com/example/GameComponent.class
 com/example/GameComponent$checkLevel.class
 com/example/Main.class
+com/example/GameData.class

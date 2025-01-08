@@ -17,7 +17,7 @@ class WindowComponent extends JComponent {
         JLabel welcomeLabel = new JLabel("Добро пожаловать в игру 'Угадай картинку' !", SwingConstants.CENTER);  // создание надписи
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18 ));  // установка шрифта
 
-        ImagesComponent welcomeImage = new ImagesComponent("images/KOT.jpg");  // здесь использую Component, так как мне нужно изменять разрешение.
+        ImagesComponent welcomeImage = new ImagesComponent("src/main/images/fon.png");  // здесь использую Component, так как мне нужно изменять разрешение.
 
         JPanel welcomePanel = new JPanel();  // создается панель (нужна для группировки элементов в контейнере)
         welcomePanel.setLayout(new BorderLayout());
