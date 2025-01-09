@@ -3,14 +3,15 @@ com/example/WindowComponent.class
 com/example/JsonDataHandler.class
 com/example/GameComponent$1.class
 com/example/SettingComponent.class
+com/example/SettingComponent$2.class
 com/example/MyButton$1.class
 com/example/WindowComponent$1.class
 com/example/GameComponent.class
 com/example/Main.class
 com/example/LevelComponent.class
 com/example/MyButton.class
-com/example/WindowComponent$2.class
 com/example/Main$1.class
+com/example/WindowComponent$2.class
 com/example/MainFrame.class
 com/example/SettingComponent$1.class
 com/example/ImagesComponent.class

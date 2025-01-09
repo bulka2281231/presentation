@@ -9,6 +9,7 @@ class WindowComponent extends JComponent {
     private MainFrame mainFrame;
     private JButton startGameButton;
     private JButton settingButton;
+    private JButton editorButton;
 
     public WindowComponent(MainFrame frame) {
         this.mainFrame = frame;
@@ -41,16 +42,22 @@ class WindowComponent extends JComponent {
         settingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SettingComponent settingComponent = new SettingComponent(mainFrame);
-                mainFrame.add(settingComponent, "Settings");
                 mainFrame.showSettings();
             }
         });
 
+        editorButton = new JButton("Редактор");
+        editorButton.setFont(new Font("Arial", Font.BOLD, 14));
+        editorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showEditor();
+            }
+        });
 
         welcomePanel.add(settingButton, BorderLayout.NORTH);
         welcomePanel.add(startGameButton, BorderLayout.SOUTH);
-
+        welcomePanel.add(editorButton, BorderLayout.WEST);
         add(welcomePanel, BorderLayout.CENTER);  // добавляю кнопку в контейнер.
     }
 }

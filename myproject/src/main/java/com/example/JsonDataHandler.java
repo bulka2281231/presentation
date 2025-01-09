@@ -27,6 +27,30 @@ class JsonDataHandler{
         return res;
     }
 
+    public static void deleteLevel(Level level){
+        gameData.removeLevel(level);
+        boolean flag = false;
+        List<String> diffs = JsonDataHandler.getLevel_diff();
+        for (String diff : diffs) {
+            List<Level> levels = JsonDataHandler.getLevels(diff);
+            for (Level level_ : levels) {
+                if(level_.getDifficult().equals(level.getDifficult())){
+                    flag = true;
+                }
+            }
+        }
+        if(!flag) gameData.removeLevel_difficulty(level.getDifficult());
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(JSONPATH), gameData);
+
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        flagForRead = true;
+    }
+
     public static void writeData(Level obj){
         if(!gameData.getLevel_difficulty().contains(obj.getDifficult())){
             gameData.addLevel_difficulty(obj.getDifficult());
@@ -34,7 +58,8 @@ class JsonDataHandler{
         gameData.addLevels(obj);
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            objectMapper.writeValue(new File(JSONPATH), gameData);
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(JSONPATH), gameData);
+
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -64,11 +89,17 @@ class GameData{
     public void addLevel_difficulty(String obj){
         level_difficulty.add(obj);
     }
+    public void removeLevel_difficulty(String obj){
+        level_difficulty.remove(obj);
+    }
     public List<Level> getLevels() {
         return levels;
     }
     public void addLevels(Level obj){
         levels.add(obj);
+    }
+    public void removeLevel(Level obj){
+        levels.remove(obj);
     }
     public void setLevel_difficulty(List<String> level_difficulty) {
         this.level_difficulty = level_difficulty;

@@ -172,7 +172,7 @@ class SettingComponent extends JComponent {
         });
     }
 
-        private String[] copyFile(String[] sourcePath){
+    private String[] copyFile(String[] sourcePath){
         boolean flag = true;
         String[] result_paths = new String[3];
         for(String file: sourcePath){
@@ -201,4 +201,9 @@ class SettingComponent extends JComponent {
             textField.setText(selectedFile.getAbsolutePath()); // Устанавливаем путь в текстовое поле
         }
     }
+    // private void loadImage(String imagePath) {
+    //     ImageIcon imageIcon = new ImageIcon(imagePath);
+    //     imageLabel.setIcon(imageIcon);
+    //     imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    // }
 }

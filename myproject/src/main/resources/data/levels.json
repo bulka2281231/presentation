@@ -1,35 +1,18 @@
 {
-    "level_difficulty": [
-      "легкий",
-      "сложный",
-      "невозможный"
-    ],
-    
-    "levels": [
-      {
-        "difficult": "легкий",
-        "name": "лунтик",
-        "orig_image": "/src/main/resources/images/luntikOrig.jpeg",
-        "blur_image": "src/main/resources/images/luntikBlur.jpg",
-        "text_hint": "на луне родился",
-        "illustrative_image": "src/main/resources/images/luntikMain.jpg"
-      },
-      {
-        "difficult": "легкий",
-        "name": "каракал",
-        "orig_image": "src/main/resources/images/karakalOrig.jpeg",
-        "blur_image": "src/main/resources/images/karakalBlur.jpg",
-        "text_hint": "семейство кошачьих",
-        "illustrative_image": "src/main/resources/images/karakalMain.jpg"
-      },
-      {
-        "difficult": "сложный",
-        "name": "каракал",
-        "orig_image": "src/main/resources/images/karakalOrig.jpeg",
-        "blur_image": "src/main/resources/images/karakalBlur.jpg",
-        "text_hint": "семейство кошачьих",
-        "illustrative_image": "src/main/resources/images/karakalMain.jpg"
-      }
-    ]
-  }
-  
+  "level_difficulty" : [ "легкий", "сложный", "невозможный" ],
+  "levels" : [ {
+    "difficult" : "легкий",
+    "name" : "лунтик",
+    "orig_image" : "src/main/resources/images/luntikOrig.jpeg",
+    "blur_image" : "src/main/resources/images/luntikBlur.jpg",
+    "text_hint" : "на луне родился",
+    "illustrative_image" : "src/main/resources/images/luntikMain.jpg"
+  }, {
+    "difficult" : "легкий",
+    "name" : "каракал",
+    "orig_image" : "src/main/resources/images/karakalOrig.jpeg",
+    "blur_image" : "src/main/resources/images/karakalBlur.jpg",
+    "text_hint" : "семейство кошачьих",
+    "illustrative_image" : "src/main/resources/images/karakalMain.jpg"
+  } ]
+}

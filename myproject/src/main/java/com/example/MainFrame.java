@@ -4,7 +4,6 @@ import javax.swing.*;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.util.List;
 
 class MainFrame extends JFrame {
     private static final int WIDTH = 600;
@@ -17,18 +16,21 @@ class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        cardLayout = new CardLayout(); // Инициализируем CardLayout
+        cardLayout = new CardLayout();
         setLayout(cardLayout); 
 
         WindowComponent windowComponent = new WindowComponent(this);
         LevelComponent levelComponent = new LevelComponent(this);
+        SettingComponent settingComponent = new SettingComponent(this);
+        EditorComponent editorComponent = new EditorComponent(this);
 
         add(windowComponent, "Welcome");
         add(levelComponent, "Level");
-
+        add(settingComponent, "Settings");
+        add(editorComponent, "Editor");
         showMainMenu();
     }
-    public void showLevelSelection() {  // новое окно с игрой
+    public void showLevelSelection() {
         cardLayout.show(getContentPane(), "Level");
     }
 
@@ -37,24 +39,15 @@ class MainFrame extends JFrame {
     }
 
     public void showMainMenu() {
-        cardLayout.show(getContentPane(), "Welcome!");
+        cardLayout.show(getContentPane(), "Welcome");
     }
 
+    public void showEditor(){
+        cardLayout.show(getContentPane(), "Editor");
+    }
     public void showSettings(){
         cardLayout.show(getContentPane(), "Settings");
         setPreferredSize(new Dimension(600, 500));
         pack();
-        // System.out.printf("%d %d", getWidth(), getHeight());
-        // SettingFrame settingFrame = new SettingFrame(this, "Игра 'Угадай картинку'");
-        // settingFrame.setSize(WIDTH, HEIGHT);
-        // settingFrame.setLocationRelativeTo(null);
     }
 }
-
-        // settingFrame.setSize(WIDTH, HEIGHT);
-        // settingFrame.setLocationRelativeTo(null);
-        // settingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // SettingComponent settingComponent = new SettingComponent();
-        // settingFrame.add(settingComponent);
-
-        // settingFrame.setVisible(true);
