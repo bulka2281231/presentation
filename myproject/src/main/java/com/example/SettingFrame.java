@@ -14,9 +14,10 @@ import javax.swing.event.ListSelectionEvent;
 
 class SettingFrame extends JFrame {
     private String IMAGEPATH = "src/main/resources/images/";
-    SettingFrame(String name) {
+    private MainFrame mainFrame;
+    SettingFrame(MainFrame frame, String name) {
         super(name);
-
+        mainFrame = frame;
         setTitle("Настройки громкости");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridBagLayout()); // Используем GridBagLayout
@@ -59,6 +60,42 @@ class SettingFrame extends JFrame {
 
         JButton readButton = new JButton("Добавить");
         readButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JButton backButton = new JButton("Назад");
+        backButton.setFont(new Font("Arial", Font.BOLD, 14));
+        backButton.addActionListener(e -> {
+            String answer = textField1.getText();
+            String hint = textField2.getText();
+            String diff = (String)comboBox.getSelectedItem();
+            String[] paths = {filePathField1.getText(), filePathField2.getText(), filePathField3.getText()};
+            paths = copyFile(paths);
+
+
+            if (paths[2] != null) {
+                Level newLevel = new Level();
+                newLevel.setDifficult(diff);
+                newLevel.setName(answer);
+                newLevel.setText_hint(hint);
+                newLevel.setOrig_image(paths[0]);
+                newLevel.setBlur_image(paths[1]);
+                newLevel.setIllustrative_image(paths[2]);
+                JsonDataHandler.writeData(newLevel); // Сохраняем данные перед закрытием окна
+            }
+
+            // Очистка полей после сохранения
+            textField1.setText("");
+            textField2.setText("");
+            filePathField1.setText("");
+            filePathField2.setText("");
+            filePathField3.setText("");
+
+            // Закрытие окна настроек
+            dispose();
+
+            // Переход назад в главное меню
+            mainFrame.showMainMenu();
+        });
+
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -128,6 +165,12 @@ class SettingFrame extends JFrame {
         gbc.gridwidth = 2;
         add(readButton, gbc);
 
+        // Добавляем кнопку "Назад" ниже кнопки "Добавить"
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        add(backButton, gbc);
+
         // Добавление обработчика событий для кнопки
         readButton.addActionListener(new ActionListener() {
             @Override
@@ -169,7 +212,7 @@ class SettingFrame extends JFrame {
         String[] result_paths = new String[3];
         for(String file: sourcePath){
             File sourceFile = new File(file);
-            if(!(sourceFile.exists() && sourceFile.isFile() && sourceFile.getName().endsWith(".png"))) flag = false;
+            if(!(sourceFile.exists() && sourceFile.isFile() && (sourceFile.getName().endsWith(".png") || sourceFile.getName().endsWith(".jpeg")))) flag = false;
         }
         if(flag){
         try {

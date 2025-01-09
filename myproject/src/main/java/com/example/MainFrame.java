@@ -25,7 +25,7 @@ class MainFrame extends JFrame {
         add(windowComponent, "Welcome");
         add(levelComponent, "Level");
 
-        cardLayout.show(getContentPane(), "Welcome!");
+        showMainMenu();
     }
     public void showLevelSelection() {  // новое окно с игрой
         cardLayout.show(getContentPane(), "Level");
@@ -35,10 +35,17 @@ class MainFrame extends JFrame {
         cardLayout.show(getContentPane(), "Game");
     }
 
+    public void showMainMenu() {
+        cardLayout.show(getContentPane(), "Welcome!");
+    }
+
     public void openSetting(){
-        SettingFrame settingFrame = new SettingFrame("Игра 'Угадай картинку'");
+        SettingFrame settingFrame = new SettingFrame(this, "Игра 'Угадай картинку'");
         settingFrame.setSize(WIDTH, HEIGHT);
         settingFrame.setLocationRelativeTo(null);
+    }
+}
+
         // settingFrame.setSize(WIDTH, HEIGHT);
         // settingFrame.setLocationRelativeTo(null);
         // settingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,5 +53,3 @@ class MainFrame extends JFrame {
         // settingFrame.add(settingComponent);
 
         // settingFrame.setVisible(true);
-    }
-}
