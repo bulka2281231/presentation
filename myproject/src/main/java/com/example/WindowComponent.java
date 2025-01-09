@@ -8,34 +8,53 @@ import java.awt.event.ActionListener;
 class WindowComponent extends JComponent {
     private MainFrame mainFrame;
     private JButton startGameButton;
+    private JButton settingButton;
 
     public WindowComponent(MainFrame frame) {
         this.mainFrame = frame;
-        setLayout(new BorderLayout());  // менеджер компановки для компонента MainComponent для размещения компонента внутри контейнера
+        setLayout(new BorderLayout());
 
         // приветствие
-        JLabel welcomeLabel = new JLabel("Добро пожаловать в игру 'Угадай картинку' !", SwingConstants.CENTER);  // создание надписи
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18 ));  // установка шрифта
+        JLabel welcomeLabel = new JLabel("Добро пожаловать в игру 'Угадай картинку' !", SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18));
 
-        ImagesComponent welcomeImage = new ImagesComponent("src/main/images/fon.png");  // здесь использую Component, так как мне нужно изменять разрешение.
+        ImagesComponent welcomeImage = new ImagesComponent("src/main/resources/images/fon.png");
 
-        JPanel welcomePanel = new JPanel();  // создается панель (нужна для группировки элементов в контейнере)
+        JPanel welcomePanel = new JPanel();
         welcomePanel.setLayout(new BorderLayout());
         welcomePanel.add(welcomeLabel, BorderLayout.NORTH);
         welcomePanel.add(welcomeImage, BorderLayout.CENTER);
 
+        // Создаем панель для кнопок
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER)); // Устанавливаем FlowLayout с выравниванием по центру
+
         // кнопка для начала игры
         startGameButton = new JButton("Начать игру");
         startGameButton.setFont(new Font("Arial", Font.BOLD, 14));
-        startGameButton.addActionListener(new ActionListener() {  // слушатель для обработки действия пользователя, если кнопка нажата.
+        startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.startGame();  // если нажата клавиша начать игру, то создается новое окно с игрой.
+                mainFrame.startGame();
             }
         });
 
-        welcomePanel.add(startGameButton, BorderLayout.SOUTH);
+        // кнопка для настроек
+        settingButton = new JButton("Настройки");
+        settingButton.setFont(new Font("Arial", Font.BOLD, 14));
+        settingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.openSetting();
+            }
+        });
 
-        add(welcomePanel, BorderLayout.CENTER);  // добавляю кнопку в контейнер.
+        // Добавляем кнопки в панель
+        buttonPanel.add(startGameButton);
+        buttonPanel.add(settingButton);
+
+        // Добавляем панель с кнопками в нижнюю часть welcomePanel
+        welcomePanel.add(buttonPanel, BorderLayout.SOUTH);
+        add(welcomePanel, BorderLayout.CENTER);
     }
 }
