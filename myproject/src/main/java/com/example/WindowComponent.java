@@ -41,7 +41,9 @@ class WindowComponent extends JComponent {
         settingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.openSetting();
+                SettingComponent settingComponent = new SettingComponent(mainFrame);
+                mainFrame.add(settingComponent, "Settings");
+                mainFrame.showSettings();
             }
         });
 

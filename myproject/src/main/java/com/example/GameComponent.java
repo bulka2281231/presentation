@@ -70,9 +70,6 @@ class GameComponent extends JComponent {
             if(currentLevelIndex == levelsList.size() ) {
                 mainFrame.remove(this);
             }
-            // // Обновляем интерфейс
-            // this.revalidate();
-            // this.repaint();
         }
     }
 
@@ -101,10 +98,8 @@ class GameComponent extends JComponent {
                 options[0]);
 
         if (choice == 0) {
-            // Если выбрано заблюренное изображение
             loadImage(levelsList.get(currentLevelIndex).getBlur_image());
         } else if (choice == 1) {
-            // Если выбрана словесная подсказка
             JOptionPane.showMessageDialog(this, "Подсказка: " + levelsList.get(currentLevelIndex).getText_hint());
         }
     }

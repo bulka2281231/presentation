@@ -3,6 +3,7 @@ package com.example;
 import javax.swing.*;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.util.List;
 
 class MainFrame extends JFrame {
@@ -39,10 +40,14 @@ class MainFrame extends JFrame {
         cardLayout.show(getContentPane(), "Welcome!");
     }
 
-    public void openSetting(){
-        SettingFrame settingFrame = new SettingFrame(this, "Игра 'Угадай картинку'");
-        settingFrame.setSize(WIDTH, HEIGHT);
-        settingFrame.setLocationRelativeTo(null);
+    public void showSettings(){
+        cardLayout.show(getContentPane(), "Settings");
+        setPreferredSize(new Dimension(600, 500));
+        pack();
+        // System.out.printf("%d %d", getWidth(), getHeight());
+        // SettingFrame settingFrame = new SettingFrame(this, "Игра 'Угадай картинку'");
+        // settingFrame.setSize(WIDTH, HEIGHT);
+        // settingFrame.setLocationRelativeTo(null);
     }
 }
 

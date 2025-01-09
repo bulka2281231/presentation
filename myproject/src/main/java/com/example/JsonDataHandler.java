@@ -39,6 +39,7 @@ class JsonDataHandler{
         catch (Exception ex){
             ex.printStackTrace();
         }
+        flagForRead = true;
     }
     
     private static void readData(){
