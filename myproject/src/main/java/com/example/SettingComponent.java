@@ -58,7 +58,6 @@ class SettingComponent extends JComponent {
         readButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton backButton = new JButton("Назад");
-        backButton.setFont(new Font("Arial", Font.BOLD, 14));
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

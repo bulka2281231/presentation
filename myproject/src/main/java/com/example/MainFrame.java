@@ -21,14 +21,12 @@ class MainFrame extends JFrame {
         setLayout(cardLayout); 
 
         WindowComponent windowComponent = new WindowComponent(this);
-        LevelComponent levelComponent = new LevelComponent(this);
 
         add(windowComponent, "Welcome");
-        add(levelComponent, "Level");
 
         showMainMenu();
     }
-    public void showLevelSelection() {  // новое окно с игрой
+    public void showLevelSelection() { 
         cardLayout.show(getContentPane(), "Level");
     }
 
@@ -37,7 +35,7 @@ class MainFrame extends JFrame {
     }
 
     public void showMainMenu() {
-        cardLayout.show(getContentPane(), "Welcome!");
+        cardLayout.show(getContentPane(), "Welcome");
     }
 
     public void showSettings(){

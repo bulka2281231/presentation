@@ -31,6 +31,8 @@ class WindowComponent extends JComponent {
         startGameButton.addActionListener(new ActionListener() {  // слушатель для обработки действия пользователя, если кнопка нажата.
             @Override
             public void actionPerformed(ActionEvent e) {
+                LevelComponent levelComponent = new LevelComponent(mainFrame);
+                mainFrame.add(levelComponent, "Level");
                 mainFrame.showLevelSelection();  // если нажата клавиша начать игру, то создается новое окно с игрой.
             }
         });
