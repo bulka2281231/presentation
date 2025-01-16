@@ -14,7 +14,7 @@ class LevelComponent extends JComponent {
     private JPanel levelPanel;
     private MainFrame mainFrame;
 
-    public LevelComponent(MainFrame frame) {
+    public LevelComponent(MainFrame frame, AudioPlayer audioPlayer) {
         this.mainFrame = frame;
         setLayout(new BorderLayout());
         
@@ -27,11 +27,10 @@ class LevelComponent extends JComponent {
          */
 
         List<String> diffLevels =  JsonDataHandler.getLevel_diff();
-        List<MyButton> buttonsLevel = new ArrayList<>();
 
         for(String diff : diffLevels) {
             List<Level> levels = JsonDataHandler.getLevels(diff); // Получаем уровни по сложности
-            JButton levelButton = new MyButton(mainFrame, diff, levels);
+            JButton levelButton = new MyButton(mainFrame, diff, levels, audioPlayer);
             levelPanel.add(levelButton);
             // JButton levelButton = createLevelButton(levels);
             // levelPanel.add(levelButton);
@@ -48,7 +47,7 @@ class MyButton extends JButton {
     private MainFrame mainFrame;
     private List<Level> listLevel;
 
-    public MyButton(MainFrame frame, String diff, List<Level> level) {
+    public MyButton(MainFrame frame, String diff, List<Level> level, AudioPlayer audioPlayer) {
         super(diff); // Используем название сложности для кнопки
         this.mainFrame = frame;
         this.listLevel = level;
@@ -60,15 +59,15 @@ class MyButton extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleButtonClick(); // Вызываем переопределенный метод
+                handleButtonClick(audioPlayer); // Вызываем переопределенный метод
             }
         });
     }
 
     // Переопределенный метод для обработки нажатия кнопки
-    protected void handleButtonClick() {
+    protected void handleButtonClick(AudioPlayer audioPlayer) {
         if(listLevel.size() > 0) {
-            GameComponent gameComponent = new GameComponent(mainFrame, listLevel);
+            GameComponent gameComponent = new GameComponent(mainFrame, listLevel,audioPlayer);
             mainFrame.add(gameComponent, "Game");
             mainFrame.showStartGame();
         }  // если клавиша нажата, появится новое окно.

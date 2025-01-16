@@ -14,8 +14,10 @@ class GameComponent extends JComponent {
     private JLabel imageLabel;
     private List<Level>levelsList;
     private int currentLevelIndex;
+    private AudioPlayer audioPlayer;
 
-    public GameComponent(MainFrame frame, List<Level> level) {
+    public GameComponent(MainFrame frame, List<Level> level, AudioPlayer audioPlayer) {
+        this.audioPlayer = audioPlayer;
         this.mainFrame = frame;
         levelsList = level;
         currentLevelIndex = 0;
@@ -61,7 +63,6 @@ class GameComponent extends JComponent {
     private void loadNextImage() {
         currentLevelIndex++;
         if(currentLevelIndex < levelsList.size()) {
-            System.out.println(currentLevelIndex);
             loadImage(levelsList.get(currentLevelIndex).getIllustrative_image());
             answerField.setText("");
         }
@@ -75,15 +76,43 @@ class GameComponent extends JComponent {
 
     private void checkAnswer() {
         String userAnswer = answerField.getText().trim();
-        if(userAnswer.equalsIgnoreCase(levelsList.get(currentLevelIndex).getName())) {
-            loadImage(levelsList.get(currentLevelIndex).getOrig_image());
-            JOptionPane.showMessageDialog(this, "Правильный ответ!");
-            loadNextImage();
+        boolean isCorrectAnswer = userAnswer.equalsIgnoreCase(levelsList.get(currentLevelIndex).getName());
+
+        audioPlayer.stop();
+
+        if(isCorrectAnswer) {
+            audioPlayer.setVolume(audioPlayer.getCurrentVolume());
+            audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/correct.wav");
         }
         else {
-            JOptionPane.showMessageDialog(this, "Неправильный ответ. Попробуйте снова.");
-            answerField.setText(""); // Очищаем поле ввода
+            audioPlayer.setVolume(audioPlayer.getCurrentVolume());
+            audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/incorrect.wav");
         }
+
+        try {
+            if(isCorrectAnswer) {
+                Thread.sleep(1000);
+                audioPlayer.stop();
+                loadImage(levelsList.get(currentLevelIndex).getOrig_image());
+                JOptionPane.showMessageDialog(this, "Правильный ответ!");
+                loadNextImage();
+                audioPlayer.setVolume(audioPlayer.getCurrentVolume());
+                audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/music.wav");
+                
+            }
+            else {
+                Thread.sleep(1000);
+                audioPlayer.stop();
+                JOptionPane.showMessageDialog(this, "Неправильный ответ. Попробуйте снова.");
+                answerField.setText(""); // Очищаем поле ввода
+                audioPlayer.setVolume(audioPlayer.getCurrentVolume());
+                audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/music.wav");
+            }
+        }
+        catch(InterruptedException e ){
+            e.printStackTrace();
+        }
+       
     }
 
     private void showHint() {
@@ -104,3 +133,48 @@ class GameComponent extends JComponent {
         }
     }
 }
+
+/*
+ *  if(userAnswer.equalsIgnoreCase(levelsList.get(currentLevelIndex).getName())) {
+
+            audioPlayer.stop();
+            audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/correct.wav");
+            boolean flag = true;
+            while(flag) {
+                try {
+                    Thread.sleep(1000);
+                    audioPlayer.stop();
+                    loadImage(levelsList.get(currentLevelIndex).getOrig_image());
+                    JOptionPane.showMessageDialog(this, "Правильный ответ!");
+                    loadNextImage();
+                    flag = false;
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/music.wav");
+                }
+            }
+        }
+        else {
+            audioPlayer.stop();
+            audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/incorrect.wav");
+            boolean flag = true;
+            while(flag) {
+                try{
+                    Thread.sleep(1000);
+                    audioPlayer.stop();
+                    JOptionPane.showMessageDialog(this, "Неправильный ответ. Попробуйте снова.");
+                    answerField.setText(""); // Очищаем поле ввода
+                    flag = false;
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/music.wav");
+                }
+            }
+        }
+ */
