@@ -1,12 +1,10 @@
 package com.example;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.awt.image.AreaAveragingScaleFilter;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 class JsonDataHandler{
     private static String JSONPATH = "src/main/resources/data/levels.json";
@@ -27,16 +25,6 @@ class JsonDataHandler{
         return res;
     }
 
-<<<<<<< HEAD
-    public static void writeData(Level obj){
-        if(!gameData.getLevel_difficulty().contains(obj.getDifficult())){
-            gameData.addLevel_difficulty(obj.getDifficult());
-        }
-        gameData.addLevels(obj);
-        ObjectMapper objectMapper = new ObjectMapper();
-        try{
-            objectMapper.writeValue(new File(JSONPATH), gameData);
-=======
     public static void deleteLevel(Level level){
         gameData.removeLevel(level);
         boolean flag = false;
@@ -54,7 +42,6 @@ class JsonDataHandler{
         try{
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(JSONPATH), gameData);
 
->>>>>>> kariK
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -100,24 +87,18 @@ class GameData{
     public void addLevel_difficulty(String obj){
         level_difficulty.add(obj);
     }
-<<<<<<< HEAD
-=======
     public void removeLevel_difficulty(String obj){
         level_difficulty.remove(obj);
     }
->>>>>>> kariK
     public List<Level> getLevels() {
         return levels;
     }
     public void addLevels(Level obj){
         levels.add(obj);
     }
-<<<<<<< HEAD
-=======
     public void removeLevel(Level obj){
         levels.remove(obj);
     }
->>>>>>> kariK
     public void setLevel_difficulty(List<String> level_difficulty) {
         this.level_difficulty = level_difficulty;
     }
@@ -134,15 +115,6 @@ class Level{
     private String blur_image;
     private String text_hint;
     private String illustrative_image;
-
-    // Level(String name, String difficult, String text_hint, String orig_image, String blur_image, String illustrative_image){
-    //     this.name = name;
-    //     this.difficult = difficult;
-    //     this.orig_image = orig_image;
-    //     this.blur_image = blur_image;
-    //     this.text_hint = text_hint;
-    //     this.illustrative_image = illustrative_image;
-    // }
 
     public String getBlur_image() {
         return blur_image;

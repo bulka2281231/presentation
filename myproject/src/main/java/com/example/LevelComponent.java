@@ -6,10 +6,7 @@ import javax.swing.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-
-import jdk.jshell.spi.ExecutionControl;
 
 class LevelComponent extends JComponent {
     private JPanel levelPanel;
@@ -20,7 +17,7 @@ class LevelComponent extends JComponent {
         setLayout(new BorderLayout());
 
         levelPanel = new JPanel();
-        levelPanel.setLayout(new GridLayout(0, 3)); // 0 строк, 3 колонки
+        levelPanel.setLayout(new GridLayout(0, 3));
 
         /*
          * Из JSON файла получаю сложность уровня и создаю для каждого уровня свою кнопку.
@@ -67,29 +64,27 @@ class MyButton extends JButton {
     private List<Level> listLevel;
 
     public MyButton(MainFrame frame, String diff, List<Level> level) {
-        super(diff); // Используем название сложности для кнопки
+        super(diff);
         this.mainFrame = frame;
         this.listLevel = level;
         
-        setBackground(Color.lightGray);  // сама кнопка серая
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));  // обводка - черная
+        setBackground(Color.lightGray);
+        setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
-        // Добавляем слушателя на нажатие кнопки
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                handleButtonClick(audioPlayer); // Вызываем переопределенный метод
+                handleButtonClick(audioPlayer);
             }
         });
     }
 
-    // Переопределенный метод для обработки нажатия кнопки
     protected void handleButtonClick(AudioPlayer audioPlayer) {
         if(listLevel.size() > 0) {
             GameComponent gameComponent = new GameComponent(mainFrame, listLevel,audioPlayer);
             mainFrame.add(gameComponent, "Game");
             mainFrame.showStartGame();
-        }  // если клавиша нажата, появится новое окно.
+        }
     }
 
     

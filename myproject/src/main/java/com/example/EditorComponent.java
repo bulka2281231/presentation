@@ -106,7 +106,6 @@ public class EditorComponent extends JComponent{
                 mainFrame.showMainMenu();
             }
         });
-        // Установка ограничений и добавление компонентов
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -179,17 +178,14 @@ public class EditorComponent extends JComponent{
         JLabel removeLabel = new JLabel("Выберите уровень для удаления:");
         JComboBox<String> removeComboBox = new JComboBox<>();
     
-        // Метод для обновления ComboBox
         updateRemoveComboBox(removeComboBox);
     
-        // JLabel для изображения
         JLabel imageLabel = new JLabel();
-        imageLabel.setPreferredSize(new Dimension(550, 300)); // Установите желаемый размер
-        imageLabel.setHorizontalAlignment(JLabel.CENTER); // Центрирование изображения
+        imageLabel.setPreferredSize(new Dimension(550, 300));
+        imageLabel.setHorizontalAlignment(JLabel.CENTER);
     
-        // Панель для ComboBox и кнопки обновления
         JPanel comboPanel = new JPanel();
-        comboPanel.setLayout(new FlowLayout()); // Горизонтальное размещение
+        comboPanel.setLayout(new FlowLayout());
     
         JButton refreshButton = new JButton("Обновить");
         refreshButton.addActionListener(new ActionListener() {
@@ -199,21 +195,17 @@ public class EditorComponent extends JComponent{
             }
         });
     
-        // Добавление компонентов в панель для ComboBox
         comboPanel.add(removeComboBox);
         comboPanel.add(refreshButton);
     
-        // Добавление компонентов в верхнюю панель
         topPanel.add(removeLabel);
         topPanel.add(comboPanel);
         topPanel.add(imageLabel);
     
-        // Добавление верхней панели в основной панель
         panel.add(topPanel);
     
-        // Кнопки внизу
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout()); // Горизонтальное размещение кнопок
+        buttonPanel.setLayout(new FlowLayout());
     
         JButton removeButton = new JButton("Удалить");
         removeButton.setFont(new Font("Arial", Font.BOLD, 14));
@@ -246,14 +238,11 @@ public class EditorComponent extends JComponent{
             }
         });
     
-        // Добавление кнопок в панель кнопок
         buttonPanel.add(removeButton);
         buttonPanel.add(backButton);
     
-        // Добавление панели кнопок в основной панель
         panel.add(buttonPanel);
     
-        // Слушатель для ComboBox
         removeComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -271,7 +260,6 @@ public class EditorComponent extends JComponent{
         return panel;
     }
     
-    // Метод для обновления ComboBox
     private void updateRemoveComboBox(JComboBox<String> removeComboBox) {
         List<String> names = new ArrayList<>();
         List<String> diffs = JsonDataHandler.getLevel_diff();
@@ -312,7 +300,7 @@ public class EditorComponent extends JComponent{
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            textField.setText(selectedFile.getAbsolutePath()); // Устанавливаем путь в текстовое поле
+            textField.setText(selectedFile.getAbsolutePath());
         }
     }
     private String getPathFromName(String name){
@@ -326,16 +314,4 @@ public class EditorComponent extends JComponent{
         return new String();
 
     }
-    // private void updateRemoveComboBox(JComboBox<String> removeComboBox) {
-    //     List<String> names = new ArrayList<>();
-    //     List<String> diffs = JsonDataHandler.getLevel_diff();
-    //     for (String diff : diffs) {
-    //         List<Level> levels = JsonDataHandler.getLevels(diff);
-    //         for (Level level : levels) {
-    //             names.add(level.getName());
-    //         }
-    //     }
-    //     removeComboBox.setModel(new DefaultComboBoxModel<>(names.toArray(new String[0])));
-    // }
-    
 }

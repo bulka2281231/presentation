@@ -1,13 +1,6 @@
 {
-  "level_difficulty" : [ "легкий", "сложный", "невозможный" ],
+  "level_difficulty" : [ "легкий", "сложный", "невозможный", "супер-сложно" ],
   "levels" : [ {
-    "difficult" : "легкий",
-    "name" : "лунтик",
-    "orig_image" : "src/main/resources/images/luntikOrig.jpeg",
-    "blur_image" : "src/main/resources/images/luntikBlur.jpg",
-    "text_hint" : "на луне родился",
-    "illustrative_image" : "src/main/resources/images/luntikMain.jpg"
-  }, {
     "difficult" : "легкий",
     "name" : "каракал",
     "orig_image" : "src/main/resources/images/karakalOrig.jpeg",
@@ -42,5 +35,12 @@
     "blur_image" : "src/main/resources/images/DenisBlur.png",
     "text_hint" : "каждый день кастрюля риса",
     "illustrative_image" : "src/main/resources/images/DenisMain.png"
+  }, {
+    "difficult" : "супер-сложно",
+    "name" : "лунтик",
+    "orig_image" : "src/main/resources/images/ориг.png",
+    "blur_image" : "src/main/resources/images/блюр.png",
+    "text_hint" : "на луне родился",
+    "illustrative_image" : "src/main/resources/images/иллю.png"
   } ]
 }

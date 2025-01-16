@@ -23,7 +23,7 @@ class WindowComponent extends JComponent {
 
     public WindowComponent(MainFrame frame, AudioPlayer audioPlayer) {
         this.mainFrame = frame;
-        setLayout(new BorderLayout());  // менеджер компоновки
+        setLayout(new BorderLayout());
 
         JLabel welcomeLabel = new JLabel("Добро пожаловать в игру 'Угадай картинку' !", SwingConstants.CENTER);
         welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18 ));

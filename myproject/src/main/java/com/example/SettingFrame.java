@@ -1,6 +1,9 @@
 package com.example;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -9,8 +12,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
 
 class SettingFrame extends JFrame {
     private String IMAGEPATH = "src/main/resources/images/";
@@ -19,11 +27,10 @@ class SettingFrame extends JFrame {
 
         setTitle("Настройки громкости");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridBagLayout()); // Используем GridBagLayout
+        setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL; // Заполнение по горизонтали
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Настройка компонентов
         JLabel volumeLabel = new JLabel("Громкость:");
         JSlider volumeSlider = new JSlider(0, 100, 50);
         volumeSlider.setMajorTickSpacing(10);
@@ -41,7 +48,6 @@ class SettingFrame extends JFrame {
         JLabel textFieldLabel2 = new JLabel("Поле для подсказки:");
         JTextField textField2 = new JTextField(15);
 
-        // Поля для ввода пути к файлам
         JLabel filePathLabel1 = new JLabel("Путь к оригинальному изображению:");
         JTextField filePathField1 = new JTextField(15);
         JButton fileChooserButton1 = new JButton("Выбрать");
@@ -95,7 +101,7 @@ class SettingFrame extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 4;
         add(filePathField1, gbc);
-        gbc.gridx = 2; // Позиция для кнопки
+        gbc.gridx = 2; 
         add(fileChooserButton1, gbc);
 
         gbc.gridx = 0;
@@ -105,7 +111,7 @@ class SettingFrame extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 5;
         add(filePathField2, gbc);
-        gbc.gridx = 2; // Позиция для кнопки
+        gbc.gridx = 2;
         add(fileChooserButton2, gbc);
 
         gbc.gridx = 0;
@@ -115,7 +121,7 @@ class SettingFrame extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 6;
         add(filePathField3, gbc);
-        gbc.gridx = 2; // Позиция для кнопки
+        gbc.gridx = 2;
         add(fileChooserButton3, gbc);
 
         gbc.gridx = 0;
@@ -128,11 +134,9 @@ class SettingFrame extends JFrame {
         gbc.gridwidth = 2;
         add(readButton, gbc);
 
-        // Добавление обработчика событий для кнопки
         readButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Считываем данные из полей
                 String answer = textField1.getText();
                 String hint = textField2.getText();
                 String difficult = (String)comboBox.getSelectedItem();
@@ -160,8 +164,7 @@ class SettingFrame extends JFrame {
             }
         });
 
-        // Установка видимости окна
-        pack(); // Упаковываем компоненты
+        pack();
         setVisible(true);
     }
     private String[] copyFile(String[] sourcePath){
@@ -190,7 +193,7 @@ class SettingFrame extends JFrame {
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            textField.setText(selectedFile.getAbsolutePath()); // Устанавливаем путь в текстовое поле
+            textField.setText(selectedFile.getAbsolutePath());
         }
     }
 }
