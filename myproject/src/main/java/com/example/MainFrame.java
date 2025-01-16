@@ -1,41 +1,60 @@
 package com.example;
 
-import javax.swing.*;
-import java.util.List;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
 
 class MainFrame extends JFrame {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 500;
+    private CardLayout cardLayout;
+    private AudioPlayer audioPlayer;
 
     public MainFrame(String nameApp) {
         super(nameApp);
         setSize(WIDTH, HEIGHT);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        WindowComponent component = new WindowComponent(this);
-        add(component);
+        cardLayout = new CardLayout();
+        setLayout(cardLayout); 
+
+        audioPlayer = new AudioPlayer();
+
+        WindowComponent windowComponent = new WindowComponent(this, audioPlayer);
+        LevelComponent levelComponent = new LevelComponent(this, audioPlayer);
+        SettingComponent settingComponent = new SettingComponent(this, audioPlayer);
+        EditorComponent editorComponent = new EditorComponent(this);
+
+        audioPlayer.play("src/main/resources/music/music.wav");
+
+        add(windowComponent, "Welcome");
+        add(levelComponent, "Level");
+        add(settingComponent, "Settings");
+        add(editorComponent, "Editor");
+        showMainMenu();
     }
-    public void startGame() {  // новое окно с игрой
-        JFrame gameFrame = new JFrame("Игра 'Угадай картинку'");
-        gameFrame.setSize(WIDTH, HEIGHT);
-        gameFrame.setLocationRelativeTo(null);  // располагаю окно по центру
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // деф настрйока
-        GameComponent gameComponent = new GameComponent();
-        gameFrame.add(gameComponent);  // добавляю логику
-
-        gameFrame.setVisible(true);  // деф настройка
+    public void showLevelSelection() {
+        LevelComponent levelComponent = (LevelComponent) getContentPane().getComponent(1);
+        levelComponent.update();
+        cardLayout.show(getContentPane(), "Level");
     }
 
-    public void openSetting(){
-        SettingFrame settingFrame = new SettingFrame("Игра 'Угадай картинку'");
-        settingFrame.setSize(WIDTH, HEIGHT);
-        settingFrame.setLocationRelativeTo(null);
-        // settingFrame.setSize(WIDTH, HEIGHT);
-        // settingFrame.setLocationRelativeTo(null);
-        // settingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // SettingComponent settingComponent = new SettingComponent();
-        // settingFrame.add(settingComponent);
+    public void showStartGame() {
+        cardLayout.show(getContentPane(), "Game");
+    }
 
-        // settingFrame.setVisible(true);
+    public void showMainMenu() {
+        cardLayout.show(getContentPane(), "Welcome");
+    }
+
+    public void showEditor(){
+        cardLayout.show(getContentPane(), "Editor");
+    }
+    public void showSettings(){
+        cardLayout.show(getContentPane(), "Settings");
+        setPreferredSize(new Dimension(600, 500));
+        pack();
     }
 }

@@ -27,6 +27,7 @@ class JsonDataHandler{
         return res;
     }
 
+<<<<<<< HEAD
     public static void writeData(Level obj){
         if(!gameData.getLevel_difficulty().contains(obj.getDifficult())){
             gameData.addLevel_difficulty(obj.getDifficult());
@@ -35,10 +36,46 @@ class JsonDataHandler{
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             objectMapper.writeValue(new File(JSONPATH), gameData);
+=======
+    public static void deleteLevel(Level level){
+        gameData.removeLevel(level);
+        boolean flag = false;
+        List<String> diffs = JsonDataHandler.getLevel_diff();
+        for (String diff : diffs) {
+            List<Level> levels = JsonDataHandler.getLevels(diff);
+            for (Level level_ : levels) {
+                if(level_.getDifficult().equals(level.getDifficult())){
+                    flag = true;
+                }
+            }
+        }
+        if(!flag) gameData.removeLevel_difficulty(level.getDifficult());
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(JSONPATH), gameData);
+
+>>>>>>> kariK
         }
         catch (Exception ex){
             ex.printStackTrace();
         }
+        flagForRead = true;
+    }
+
+    public static void writeData(Level obj){
+        if(!gameData.getLevel_difficulty().contains(obj.getDifficult())){
+            gameData.addLevel_difficulty(obj.getDifficult());
+        }
+        gameData.addLevels(obj);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try{
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(JSONPATH), gameData);
+
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        flagForRead = true;
     }
     
     private static void readData(){
@@ -63,12 +100,24 @@ class GameData{
     public void addLevel_difficulty(String obj){
         level_difficulty.add(obj);
     }
+<<<<<<< HEAD
+=======
+    public void removeLevel_difficulty(String obj){
+        level_difficulty.remove(obj);
+    }
+>>>>>>> kariK
     public List<Level> getLevels() {
         return levels;
     }
     public void addLevels(Level obj){
         levels.add(obj);
     }
+<<<<<<< HEAD
+=======
+    public void removeLevel(Level obj){
+        levels.remove(obj);
+    }
+>>>>>>> kariK
     public void setLevel_difficulty(List<String> level_difficulty) {
         this.level_difficulty = level_difficulty;
     }

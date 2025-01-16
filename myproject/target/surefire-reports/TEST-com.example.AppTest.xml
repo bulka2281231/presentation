@@ -3,7 +3,7 @@
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/bulat/MyProjects/univer/presentation/myproject/target/test-classes:/Users/bulat/MyProjects/univer/presentation/myproject/target/classes:/Users/bulat/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.3/jackson-databind-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.3/jackson-annotations-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.3/jackson-core-2.13.3.jar:"/>
+    <property name="java.class.path" value="/Users/bulat/presentation/myproject/target/test-classes:/Users/bulat/presentation/myproject/target/classes:/Users/bulat/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.3/jackson-databind-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.3/jackson-annotations-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.3/jackson-core-2.13.3.jar:"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://adoptium.net/"/>
@@ -12,10 +12,14 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="AE"/>
     <property name="sun.boot.library.path" value="/Users/bulat/.sdkman/candidates/java/21.0.5-tem/lib"/>
+<<<<<<< HEAD
     <property name="sun.java.command" value="/Users/bulat/MyProjects/univer/presentation/myproject/target/surefire/surefirebooter-20250109003618858_3.jar /Users/bulat/MyProjects/univer/presentation/myproject/target/surefire 2025-01-09T00-36-18_828-jvmRun1 surefire-20250109003618858_1tmp surefire_0-20250109003618858_2tmp"/>
+=======
+    <property name="sun.java.command" value="/Users/bulat/presentation/myproject/target/surefire/surefirebooter-20250109191807897_3.jar /Users/bulat/presentation/myproject/target/surefire 2025-01-09T19-18-07_862-jvmRun1 surefire-20250109191807897_1tmp surefire_0-20250109191807897_2tmp"/>
+>>>>>>> kariK
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/bulat/MyProjects/univer/presentation/myproject/target/test-classes:/Users/bulat/MyProjects/univer/presentation/myproject/target/classes:/Users/bulat/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.3/jackson-databind-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.3/jackson-annotations-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.3/jackson-core-2.13.3.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/bulat/presentation/myproject/target/test-classes:/Users/bulat/presentation/myproject/target/classes:/Users/bulat/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.3/jackson-databind-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.3/jackson-annotations-2.13.3.jar:/Users/bulat/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.3/jackson-core-2.13.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/bulat"/>
     <property name="user.language" value="ru"/>
@@ -23,13 +27,17 @@
     <property name="java.version.date" value="2024-10-15"/>
     <property name="java.home" value="/Users/bulat/.sdkman/candidates/java/21.0.5-tem"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/bulat/MyProjects/univer/presentation/myproject"/>
+    <property name="basedir" value="/Users/bulat/presentation/myproject"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
+<<<<<<< HEAD
     <property name="surefire.real.class.path" value="/Users/bulat/MyProjects/univer/presentation/myproject/target/surefire/surefirebooter-20250109003618858_3.jar"/>
+=======
+    <property name="surefire.real.class.path" value="/Users/bulat/presentation/myproject/target/surefire/surefirebooter-20250109191807897_3.jar"/>
+>>>>>>> kariK
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.5+11-LTS"/>
@@ -45,7 +53,7 @@
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
     <property name="java.io.tmpdir" value="/var/folders/q2/rc5zw5js5_56f33gz2mg17640000gn/T/"/>
     <property name="java.version" value="21.0.5"/>
-    <property name="user.dir" value="/Users/bulat/MyProjects/univer/presentation/myproject"/>
+    <property name="user.dir" value="/Users/bulat/presentation/myproject"/>
     <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="native.encoding" value="UTF-8"/>
