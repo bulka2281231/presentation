@@ -1,21 +1,32 @@
 package com.example;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 class GameComponent extends JComponent {
     private MainFrame mainFrame;
     private JTextField answerField;
     private JButton hintButton;
     private JButton sendButton;
+    private JButton backButton;
     private JLabel imageLabel;
     private List<Level>levelsList;
     private int currentLevelIndex;
+    private AudioPlayer audioPlayer;
 
-    public GameComponent(MainFrame frame, List<Level> level) {
+    public GameComponent(MainFrame frame, List<Level> level, AudioPlayer audioPlayer) {
+        this.audioPlayer = audioPlayer;
         this.mainFrame = frame;
         levelsList = level;
         currentLevelIndex = 0;
@@ -26,6 +37,7 @@ class GameComponent extends JComponent {
         answerField = new JTextField(20);
         hintButton = new JButton("Подсказка");
         sendButton = new JButton("Проверить");
+        backButton = new JButton("Назад");
 
         loadImage(levelsList.get(currentLevelIndex).getIllustrative_image());
 
@@ -33,6 +45,7 @@ class GameComponent extends JComponent {
         inputPanel.add(answerField);
         inputPanel.add(sendButton);
         inputPanel.add(hintButton);
+        inputPanel.add(backButton);
 
         add(imageLabel, BorderLayout.CENTER);
         add(inputPanel, BorderLayout.SOUTH);
@@ -50,6 +63,12 @@ class GameComponent extends JComponent {
                 showHint();
             }
         });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.showLevelSelection();
+            }
+        });
     }
 
     private void loadImage(String imagePath) {
@@ -61,7 +80,6 @@ class GameComponent extends JComponent {
     private void loadNextImage() {
         currentLevelIndex++;
         if(currentLevelIndex < levelsList.size()) {
-            System.out.println(currentLevelIndex);
             loadImage(levelsList.get(currentLevelIndex).getIllustrative_image());
             answerField.setText("");
         }
@@ -75,15 +93,36 @@ class GameComponent extends JComponent {
 
     private void checkAnswer() {
         String userAnswer = answerField.getText().trim();
-        if(userAnswer.equalsIgnoreCase(levelsList.get(currentLevelIndex).getName())) {
-            loadImage(levelsList.get(currentLevelIndex).getOrig_image());
-            JOptionPane.showMessageDialog(this, "Правильный ответ!");
-            loadNextImage();
+        boolean isInCorrectAnswer = userAnswer.equalsIgnoreCase(levelsList.get(currentLevelIndex).getName());
+
+        AudioPlayer tempAudioPlayer = new AudioPlayer();
+
+        if(isInCorrectAnswer) {
+            tempAudioPlayer.play("src/main/resources/music/incorrect.wav");
         }
         else {
-            JOptionPane.showMessageDialog(this, "Неправильный ответ. Попробуйте снова.");
-            answerField.setText(""); // Очищаем поле ввода
+            tempAudioPlayer.play("src/main/resources/music/correct.wav");
         }
+
+        try {
+            if(isInCorrectAnswer) {
+                Thread.sleep(700);
+                tempAudioPlayer.stop();
+                loadImage(levelsList.get(currentLevelIndex).getOrig_image());
+                JOptionPane.showMessageDialog(this, "Правильный ответ!");
+                loadNextImage();
+            }
+            else {
+                Thread.sleep(700);
+                tempAudioPlayer.stop();
+                JOptionPane.showMessageDialog(this, "Неправильный ответ. Попробуйте снова.");
+                answerField.setText("");
+            }
+        }
+        catch(InterruptedException e ){
+            e.printStackTrace();
+        }
+       
     }
 
     private void showHint() {
@@ -104,3 +143,48 @@ class GameComponent extends JComponent {
         }
     }
 }
+
+/*
+ *  if(userAnswer.equalsIgnoreCase(levelsList.get(currentLevelIndex).getName())) {
+
+            audioPlayer.stop();
+            audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/correct.wav");
+            boolean flag = true;
+            while(flag) {
+                try {
+                    Thread.sleep(1000);
+                    audioPlayer.stop();
+                    loadImage(levelsList.get(currentLevelIndex).getOrig_image());
+                    JOptionPane.showMessageDialog(this, "Правильный ответ!");
+                    loadNextImage();
+                    flag = false;
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/music.wav");
+                }
+            }
+        }
+        else {
+            audioPlayer.stop();
+            audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/incorrect.wav");
+            boolean flag = true;
+            while(flag) {
+                try{
+                    Thread.sleep(1000);
+                    audioPlayer.stop();
+                    JOptionPane.showMessageDialog(this, "Неправильный ответ. Попробуйте снова.");
+                    answerField.setText(""); // Очищаем поле ввода
+                    flag = false;
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    audioPlayer.play("/home/karim/presentation/myproject/src/main/resources/music/music.wav");
+                }
+            }
+        }
+ */

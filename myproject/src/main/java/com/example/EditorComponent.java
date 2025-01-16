@@ -291,7 +291,7 @@ public class EditorComponent extends JComponent{
         String[] result_paths = new String[3];
         for(String file: sourcePath){
             File sourceFile = new File(file);
-            if(!(sourceFile.exists() && sourceFile.isFile() && (sourceFile.getName().endsWith(".png") || sourceFile.getName().endsWith(".jpeg")))) flag = false;
+            if(!(sourceFile.exists() && sourceFile.isFile() && (sourceFile.getName().endsWith(".png") || sourceFile.getName().endsWith(".jpeg") || sourceFile.getName().endsWith(".jpg")))) flag = false;
         }
         if(flag){
         try {

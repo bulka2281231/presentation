@@ -1,9 +1,19 @@
 package com.example;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 class WindowComponent extends JComponent {
     private MainFrame mainFrame;
@@ -11,32 +21,32 @@ class WindowComponent extends JComponent {
     private JButton settingButton;
     private JButton editorButton;
 
-    public WindowComponent(MainFrame frame) {
+    public WindowComponent(MainFrame frame, AudioPlayer audioPlayer) {
         this.mainFrame = frame;
-        setLayout(new BorderLayout());  // менеджер компановки для компонента MainComponent для размещения компонента внутри контейнера
+        setLayout(new BorderLayout());  // менеджер компоновки
 
-        // приветствие
-        JLabel welcomeLabel = new JLabel("Добро пожаловать в игру 'Угадай картинку' !", SwingConstants.CENTER);  // создание надписи
-        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18 ));  // установка шрифта
+        JLabel welcomeLabel = new JLabel("Добро пожаловать в игру 'Угадай картинку' !", SwingConstants.CENTER);
+        welcomeLabel.setFont(new Font("Arial", Font.BOLD, 18 ));
 
-        ImagesComponent welcomeImage = new ImagesComponent("src/main/resources/images/fon.png");  // здесь использую Component, так как мне нужно изменять разрешение.
+        ImagesComponent welcomeImage = new ImagesComponent("src/main/resources/images/fon.png"); 
 
-        JPanel welcomePanel = new JPanel();  // создается панель (нужна для группировки элементов в контейнере)
+        JPanel welcomePanel = new JPanel();
         welcomePanel.setLayout(new BorderLayout());
         welcomePanel.add(welcomeLabel, BorderLayout.NORTH);
         welcomePanel.add(welcomeImage, BorderLayout.CENTER);
 
-        // кнопка для начала игры
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
         startGameButton = new JButton("Начать игру");
         startGameButton.setFont(new Font("Arial", Font.BOLD, 14));
-        startGameButton.addActionListener(new ActionListener() {  // слушатель для обработки действия пользователя, если кнопка нажата.
+        startGameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainFrame.showLevelSelection();  // если нажата клавиша начать игру, то создается новое окно с игрой.
+                mainFrame.showLevelSelection();
             }
         });
 
-        // кнопка для настроек
         settingButton = new JButton("Настройки");
         settingButton.setFont(new Font("Arial", Font.BOLD, 14));
         settingButton.addActionListener(new ActionListener() {
@@ -55,9 +65,25 @@ class WindowComponent extends JComponent {
             }
         });
 
-        welcomePanel.add(settingButton, BorderLayout.NORTH);
-        welcomePanel.add(startGameButton, BorderLayout.SOUTH);
-        welcomePanel.add(editorButton, BorderLayout.WEST);
-        add(welcomePanel, BorderLayout.CENTER);  // добавляю кнопку в контейнер.
+        buttonPanel.add(startGameButton);
+        buttonPanel.add(settingButton);
+        buttonPanel.add(editorButton);
+
+        welcomePanel.add(buttonPanel, BorderLayout.SOUTH);
+        add(welcomePanel, BorderLayout.CENTER);
+    }
+}
+
+class ImagesComponent extends JComponent {
+    private Image image;
+
+    public ImagesComponent(String path) {
+        image = new ImageIcon(path).getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
     }
 }

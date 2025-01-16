@@ -1,14 +1,15 @@
 package com.example;
 
-import javax.swing.*;
-
 import java.awt.CardLayout;
 import java.awt.Dimension;
+
+import javax.swing.JFrame;
 
 class MainFrame extends JFrame {
     private static final int WIDTH = 600;
     private static final int HEIGHT = 500;
     private CardLayout cardLayout;
+    private AudioPlayer audioPlayer;
 
     public MainFrame(String nameApp) {
         super(nameApp);
@@ -19,10 +20,14 @@ class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         setLayout(cardLayout); 
 
-        WindowComponent windowComponent = new WindowComponent(this);
-        LevelComponent levelComponent = new LevelComponent(this);
-        SettingComponent settingComponent = new SettingComponent(this);
+        audioPlayer = new AudioPlayer();
+
+        WindowComponent windowComponent = new WindowComponent(this, audioPlayer);
+        LevelComponent levelComponent = new LevelComponent(this, audioPlayer);
+        SettingComponent settingComponent = new SettingComponent(this, audioPlayer);
         EditorComponent editorComponent = new EditorComponent(this);
+
+        audioPlayer.play("src/main/resources/music/music.wav");
 
         add(windowComponent, "Welcome");
         add(levelComponent, "Level");
@@ -31,6 +36,8 @@ class MainFrame extends JFrame {
         showMainMenu();
     }
     public void showLevelSelection() {
+        LevelComponent levelComponent = (LevelComponent) getContentPane().getComponent(1);
+        levelComponent.update();
         cardLayout.show(getContentPane(), "Level");
     }
 
