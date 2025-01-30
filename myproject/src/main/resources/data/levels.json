@@ -1,26 +1,19 @@
 {
-  "level_difficulty" : [ "легкий", "сложный", "невозможный", "супер-сложно" ],
+  "level_difficulty" : [ "легкий", "сложный", "невозможный" ],
   "levels" : [ {
-    "difficult" : "легкий",
+    "difficult" : "сложный",
     "name" : "каракал",
     "orig_image" : "src/main/resources/images/karakalOrig.jpeg",
     "blur_image" : "src/main/resources/images/karakalBlur.jpg",
     "text_hint" : "семейство кошачьих",
     "illustrative_image" : "src/main/resources/images/karakalMain.jpg"
   }, {
-    "difficult" : "сложный",
+    "difficult" : "невозможный",
     "name" : "дубровин",
     "orig_image" : "src/main/resources/images/DubrovinOrig.jpg",
     "blur_image" : "src/main/resources/images/DubrovinBlur.png",
     "text_hint" : "кафедра тервер",
     "illustrative_image" : "src/main/resources/images/DubrovinMain.png"
-  }, {
-    "difficult" : "невозможный",
-    "name" : "капибара",
-    "orig_image" : "src/main/resources/images/tigrKapiOrig.jpg",
-    "blur_image" : "src/main/resources/images/tigrKapiBlur.png",
-    "text_hint" : "семейство грызунов",
-    "illustrative_image" : "src/main/resources/images/tigrKapiMain.png"
   }, {
     "difficult" : "легкий",
     "name" : "тигр",
@@ -36,11 +29,39 @@
     "text_hint" : "каждый день кастрюля риса",
     "illustrative_image" : "src/main/resources/images/DenisMain.png"
   }, {
-    "difficult" : "супер-сложно",
+    "difficult" : "легкий",
+    "name" : "эйнштейн",
+    "orig_image" : "src/main/resources/images/эйнштейнОриг.png",
+    "blur_image" : "src/main/resources/images/эйнштейнРазмытие.png",
+    "text_hint" : "физик-теоретик",
+    "illustrative_image" : "src/main/resources/images/эйнштейнПоказ.png"
+  }, {
+    "difficult" : "легкий",
     "name" : "лунтик",
     "orig_image" : "src/main/resources/images/ориг.png",
     "blur_image" : "src/main/resources/images/блюр.png",
     "text_hint" : "на луне родился",
     "illustrative_image" : "src/main/resources/images/иллю.png"
+  }, {
+    "difficult" : "невозможный",
+    "name" : "марат",
+    "orig_image" : "src/main/resources/images/маратОриг.png",
+    "blur_image" : "src/main/resources/images/маратБлюр.png",
+    "text_hint" : "казанский пацан. торгует клубникой",
+    "illustrative_image" : "src/main/resources/images/маратИллюстр.png"
+  }, {
+    "difficult" : "сложный",
+    "name" : "квадрат малевича",
+    "orig_image" : "src/main/resources/images/квадрат малевича.png",
+    "blur_image" : "src/main/resources/images/квадрат малевича.png",
+    "text_hint" : "квадрат",
+    "illustrative_image" : "src/main/resources/images/квадрат малевича.png"
+  }, {
+    "difficult" : "невозможный",
+    "name" : "капибара",
+    "orig_image" : "src/main/resources/images/tigrKapiOrig.jpg",
+    "blur_image" : "src/main/resources/images/tigrKapiBlur.png",
+    "text_hint" : "семейство грызунов",
+    "illustrative_image" : "src/main/resources/images/tigrKapiMain.png"
   } ]
 }
